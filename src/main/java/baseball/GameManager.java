@@ -52,7 +52,7 @@ public class GameManager {
     public List<String> makeRandomNumbers() {
         List<String> numbers = new ArrayList<>();
 
-        for (int i = 0; i < HOME_RUN_COUNT; i++) {
+        while (numbers.size() < HOME_RUN_COUNT) {
             int randomValue = RandomUtils.nextInt(START_VALUE, END_VALUE);
 
             if (numbers.stream()
