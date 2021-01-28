@@ -71,6 +71,7 @@ public class GameManager {
     public void showMatchResult(Scanner scanner, List<String> GameNumbers, List<String> playerNumbers) {
         if (isNothing(GameNumbers, playerNumbers)) {
             OutputView.printNothing();
+            OutputView.printNewLine();
 
             return;
         }
