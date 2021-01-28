@@ -1,21 +1,40 @@
 package baseball;
 
+import utils.RandomUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
     private static final int EMPTY_COUNT = 0;
     private static final int HOME_RUN_COUNT = 3;
+    private static final int START_VALUE = 1;
+    private static final int END_VALUE = 9;
 
     public void doGame() {
 
     }
 
-    public String makeRandomNumber() {
-        return null;
+    public List<String> makeRandomNumbers() {
+        List<String> numbers = new ArrayList<>();
+
+        for (int i = 0; i < HOME_RUN_COUNT; i++) {
+            int randomValue = RandomUtils.nextInt(START_VALUE, END_VALUE);
+
+            if (numbers.stream()
+                    .noneMatch(number -> number.equals(Integer.toString(randomValue)))) {
+                numbers.add(Integer.toString(randomValue));
+            }
+
+            if (numbers.size() == HOME_RUN_COUNT) {
+                break;
+            }
+        }
+
+        return numbers;
     }
 
     public void showMatchResult(Scanner scanner, List<String> GameNumbers, List<String> playerNumbers) {
