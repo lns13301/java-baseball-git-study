@@ -1,12 +1,14 @@
 package baseball;
 
+import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class GameManager {
     private static final int EMPTY_COUNT = 0;
-    private static final int STRIKE_COUNT = 3;
+    private static final int HOME_RUN_COUNT = 3;
 
     public void doGame() {
 
@@ -16,13 +18,29 @@ public class GameManager {
         return null;
     }
 
-    public void showMatchResult(List<String> GameNumbers, List<String> playerNumbers) {
+    public void showMatchResult(Scanner scanner, List<String> GameNumbers, List<String> playerNumbers) {
+        if (isNothing(GameNumbers, playerNumbers)) {
+            OutputView.printNothing();
+
+            return;
+        }
+
         OutputView.printBall(getBallCount(GameNumbers, playerNumbers));
         OutputView.printStrike(getStrikeCount(GameNumbers, playerNumbers));
+
+        if (isHomeRun(GameNumbers, playerNumbers)) {
+            OutputView.printGameEnd();
+            InputView.inputContinue(scanner);
+        }
     }
 
-    public boolean isStrike(List<String> GameNumbers, List<String> playerNumbers) {
-        return getStrikeCount(GameNumbers, playerNumbers) == STRIKE_COUNT;
+    public boolean isHomeRun(List<String> GameNumbers, List<String> playerNumbers) {
+        return getStrikeCount(GameNumbers, playerNumbers) == HOME_RUN_COUNT;
+    }
+
+    public boolean isNothing(List<String> GameNumbers, List<String> playerNumbers) {
+        return isHomeRun(GameNumbers, playerNumbers)
+                && getBallCount(GameNumbers, playerNumbers) == EMPTY_COUNT;
     }
 
     private int getBallCount(List<String> GameNumbers, List<String> playerNumbers) {
