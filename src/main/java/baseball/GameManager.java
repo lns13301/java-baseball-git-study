@@ -90,7 +90,7 @@ public class GameManager {
     }
 
     public boolean isNothing(List<String> GameNumbers, List<String> playerNumbers) {
-        return isHomeRun(GameNumbers, playerNumbers)
+        return !isHomeRun(GameNumbers, playerNumbers)
                 && getBallCount(GameNumbers, playerNumbers) == EMPTY_COUNT;
     }
 
