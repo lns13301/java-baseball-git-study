@@ -77,6 +77,7 @@ public class GameManager {
 
         OutputView.printBall(getBallCount(GameNumbers, playerNumbers));
         OutputView.printStrike(getStrikeCount(GameNumbers, playerNumbers));
+        OutputView.printNewLine();
 
         if (isHomeRun(GameNumbers, playerNumbers)) {
             OutputView.printGameEnd();
@@ -89,7 +90,7 @@ public class GameManager {
     }
 
     public boolean isNothing(List<String> GameNumbers, List<String> playerNumbers) {
-        return isHomeRun(GameNumbers, playerNumbers)
+        return !isHomeRun(GameNumbers, playerNumbers)
                 && getBallCount(GameNumbers, playerNumbers) == EMPTY_COUNT;
     }
 
