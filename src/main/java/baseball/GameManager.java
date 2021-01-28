@@ -5,7 +5,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +15,10 @@ public class GameManager {
     private static final int END_VALUE = 9;
 
     private GameState gameState;
+
+    public GameManager() {
+        gameState = GameState.PLAY;
+    }
 
     public void startGame(Scanner scanner) {
         while (gameState.equals(GameState.PLAY)) {
