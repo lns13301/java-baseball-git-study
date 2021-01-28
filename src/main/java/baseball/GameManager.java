@@ -77,6 +77,7 @@ public class GameManager {
 
         OutputView.printBall(getBallCount(GameNumbers, playerNumbers));
         OutputView.printStrike(getStrikeCount(GameNumbers, playerNumbers));
+        OutputView.printNewLine();
 
         if (isHomeRun(GameNumbers, playerNumbers)) {
             OutputView.printGameEnd();
