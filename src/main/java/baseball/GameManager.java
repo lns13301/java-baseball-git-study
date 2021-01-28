@@ -71,6 +71,7 @@ public class GameManager {
     public void showMatchResult(Scanner scanner, List<String> GameNumbers, List<String> playerNumbers) {
         if (isNothing(GameNumbers, playerNumbers)) {
             OutputView.printNothing();
+            OutputView.printNewLine();
 
             return;
         }
@@ -91,6 +92,7 @@ public class GameManager {
 
     public boolean isNothing(List<String> GameNumbers, List<String> playerNumbers) {
         return !isHomeRun(GameNumbers, playerNumbers)
+                && getStrikeCount(GameNumbers, playerNumbers) == EMPTY_COUNT
                 && getBallCount(GameNumbers, playerNumbers) == EMPTY_COUNT;
     }
 
