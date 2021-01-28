@@ -5,6 +5,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,8 +15,35 @@ public class GameManager {
     private static final int START_VALUE = 1;
     private static final int END_VALUE = 9;
 
-    public void doGame() {
+    private GameState gameState;
 
+    public void startGame(Scanner scanner) {
+        while (gameState.equals(GameState.PLAY)) {
+            doGame(scanner, makeRandomNumbers());
+        }
+    }
+
+    public void doGame(Scanner scanner, List<String> gameNumbers) {
+        while (true) {
+            List<String> numbers = makeStringToListString(InputView.inputNumbers(scanner));
+
+            showMatchResult(scanner, gameNumbers, numbers);
+
+            if (isHomeRun(gameNumbers, numbers)) {
+                break;
+            }
+        }
+    }
+
+    private List<String> makeStringToListString(String value) {
+        List<String> result = new ArrayList<>();
+        char[] chars = value.toCharArray();
+
+        for (char number : chars) {
+            result.add(Character.toString(number));
+        }
+
+        return result;
     }
 
     public List<String> makeRandomNumbers() {
@@ -49,7 +77,7 @@ public class GameManager {
 
         if (isHomeRun(GameNumbers, playerNumbers)) {
             OutputView.printGameEnd();
-            InputView.inputContinue(scanner);
+            gameState = InputView.inputContinue(scanner);
         }
     }
 
